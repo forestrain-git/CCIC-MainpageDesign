@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻中心 - 中建智能技术有限公司</title>
+  <meta name="description" content="了解中建智能的最新动态、行业资讯与党建信息">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/news.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">中建集团旗下</span>
+      <span class="logo-main">中建智能</span>
+      <span class="logo-sub">CSCEC INTELLIGENT</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="business.html">业务领域</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="cases.html">典型案例</a>
+      <a href="news.html" class="active">新闻中心</a>
+      <a href="contact.html">联系我们</a>
+      <a href="party.html">党建专栏</a>
+    </div>
+    <div class="mobile-menu-btn"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="news-hero">
+    <h1>新闻中心</h1>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="featured-section">
+    <div class="featured-article animate-on-scroll">
+      <div class="featured-img" style="overflow:hidden;min-height:250px;">
+        <img src="images/news/featured-award.png" alt="智慧城市优秀解决方案奖" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+      </div>
+      <div class="featured-content">
+        <span class="tag tag-blue">公司新闻</span>
+        <h2>中建智能荣获2024年度智慧城市优秀解决方案奖</h2>
+        <p>在近日举办的2024智慧城市发展大会上，中建智能技术有限公司凭借"智慧水务全链条运营解决方案"荣获年度智慧城市优秀解决方案奖。该方案已在多个省市成功落地，取得了显著的社会效益和经济效益...</p>
+        <div class="featured-meta">
+          <span>2024-12-15</span>
+          <span>公司新闻</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter -->
+  <section class="news-filter-section">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="company">公司新闻</button>
+      <button class="filter-btn" data-filter="industry">行业动态</button>
+      <button class="filter-btn" data-filter="party">党建动态</button>
+      <button class="filter-btn" data-filter="media">媒体聚焦</button>
+    </div>
+  </section>
+
+  <!-- News List -->
+  <section class="news-list-section">
+    <div class="news-list" id="news-container">
+      <div class="news-item filter-item animate-on-scroll" data-category="company">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/water-partnership.png" alt="智慧水务战略合作" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-blue">公司新闻</span>
+          <h3>中建智能与某市签署智慧水务战略合作协议</h3>
+          <p>双方将围绕智慧水务建设开展深度合作，共同推进城市水务系统智慧化升级...</p>
+          <div class="news-item-meta">
+            <span>2024-11-28</span>
+            <span>公司新闻</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll animate-delay-1" data-category="industry">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/industry-trend.png" alt="智慧水务行业趋势" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-cyan">行业动态</span>
+          <h3>2024年智慧水务行业发展趋势分析</h3>
+          <p>随着物联网、大数据、人工智能等技术的发展，智慧水务行业迎来新的发展机遇...</p>
+          <div class="news-item-meta">
+            <span>2024-11-20</span>
+            <span>行业动态</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll animate-delay-2" data-category="party">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/party-activity.png" alt="主题党日活动" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-gold">党建动态</span>
+          <h3>公司党支部开展"不忘初心、牢记使命"主题党日活动</h3>
+          <p>公司全体党员前往红色教育基地，开展主题党日活动，重温入党誓词...</p>
+          <div class="news-item-meta">
+            <span>2024-11-15</span>
+            <span>党建动态</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll" data-category="company">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/platform-launch.png" alt="智慧管廊运维平台3.0" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-blue">公司新闻</span>
+          <h3>中建智能智慧管廊运维平台3.0版本正式发布</h3>
+          <p>新版本在数据分析、智能预警、移动端支持等方面进行了全面升级...</p>
+          <div class="news-item-meta">
+            <span>2024-11-10</span>
+            <span>公司新闻</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll animate-delay-1" data-category="media">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/media-report.png" alt="媒体专题报道" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-gold">媒体聚焦</span>
+          <h3>《中国经济日报》专题报道：中建智能助力城市数字化转型</h3>
+          <p>报道深入介绍了中建智能在智慧水务、智慧管廊等领域的创新实践...</p>
+          <div class="news-item-meta">
+            <span>2024-10-25</span>
+            <span>媒体聚焦</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll animate-delay-2" data-category="industry">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/urban-policy.png" alt="新型城镇化建设" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-cyan">行业动态</span>
+          <h3>国家发布新型城镇化建设指导意见，智慧运营迎来新机遇</h3>
+          <p>国务院发布新型城镇化建设相关指导意见，明确提出推进城市基础设施智慧化...</p>
+          <div class="news-item-meta">
+            <span>2024-10-18</span>
+            <span>行业动态</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll" data-category="company">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/iso-certificate.png" alt="ISO27001认证" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-blue">公司新闻</span>
+          <h3>中建智能顺利通过ISO27001信息安全管理体系认证</h3>
+          <p>标志着公司信息安全管理水平达到国际标准，为客户提供更安全可靠的服务...</p>
+          <div class="news-item-meta">
+            <span>2024-10-10</span>
+            <span>公司新闻</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-item filter-item animate-on-scroll animate-delay-1" data-category="party">
+        <div class="news-item-img" style="overflow:hidden;">
+          <img src="images/news/study-meeting.png" alt="学习贯彻会议精神" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </div>
+        <div class="news-item-content">
+          <span class="tag tag-gold">党建动态</span>
+          <h3>公司组织学习贯彻党的二十届三中全会精神</h3>
+          <p>公司全体员工深入学习会议精神，结合实际工作制定贯彻落实措施...</p>
+          <div class="news-item-meta">
+            <span>2024-09-28</span>
+            <span>党建动态</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">3</button>
+    <button class="page-btn">&gt;</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">中建智能</div>
+        <div class="logo-sub">CSCEC INTELLIGENT</div>
+        <p>中建集团旗下首家智慧运营公司，专注于城市基础设施智慧化运营服务，致力于成为最具竞争力的智慧运营解决方案提供商。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="business.html">业务领域</a></li>
+          <li><a href="solutions.html">解决方案</a></li>
+          <li><a href="cases.html">典型案例</a></li>
+          <li><a href="news.html">新闻中心</a></li>
+          <li><a href="contact.html">联系我们</a></li>
+          <li><a href="party.html">党建专栏</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>联系方式</h4>
+        <p><span class="contact-icon">&#9906;</span> 北京市海淀区三里河路甲11号</p>
+        <p><span class="contact-icon">&#9990;</span> 请通过表单联系我们</p>
+        <p><span class="contact-icon">&#9993;</span> contact@cscecint.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 中建智能技术有限公司 版权所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var filterBar = document.querySelector('.news-filter-section .filter-bar');
+      var newsContainer = document.getElementById('news-container');
+      if (filterBar && newsContainer && typeof initFilter === 'function') {
+        initFilter(filterBar, newsContainer);
+      }
+    });
+  </script>
+</body>
+</html>

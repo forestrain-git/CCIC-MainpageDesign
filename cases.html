@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>典型案例 - 中建智能技术有限公司</title>
+  <meta name="description" content="覆盖全国的智慧水务、智慧管廊、海绵城市、智慧城市标杆项目">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cases.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">中建集团旗下</span>
+      <span class="logo-main">中建智能</span>
+      <span class="logo-sub">CSCEC INTELLIGENT</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="business.html">业务领域</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="cases.html" class="active">典型案例</a>
+      <a href="news.html">新闻中心</a>
+      <a href="contact.html">联系我们</a>
+      <a href="party.html">党建专栏</a>
+    </div>
+    <div class="mobile-menu-btn"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="cases-hero">
+    <div class="hero-content">
+      <h1>典型案例</h1>
+      <div class="featured-case animate-on-scroll">
+        <span class="tag tag-cyan">特色案例</span>
+        <h3>江苏溧阳市农污项目</h3>
+        <p>覆盖溧阳市全域农村污水治理的智慧运营项目，采用"互联网+运维"模式，实现农污设施远程监控、智能调度、高效运维</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-section">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="water">智慧水务</button>
+      <button class="filter-btn" data-filter="pipe">智慧管廊</button>
+      <button class="filter-btn" data-filter="sponge">海绵城市</button>
+      <button class="filter-btn" data-filter="city">智慧城市</button>
+      <button class="filter-btn" data-filter="rural">智慧农污</button>
+    </div>
+  </section>
+
+  <!-- Cases List -->
+  <section class="cases-list-section">
+    <div class="cases-list-grid" id="cases-container">
+      <div class="case-detail-card filter-item animate-on-scroll" data-category="water">
+        <div class="case-detail-img">
+          <img src="images/projects/hangzhou-water.jpg" alt="杭州城北水厂" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">杭州城北水厂</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-cyan">智慧水务</span>
+          <h3>杭州城北水厂智慧运营项目</h3>
+          <p>智慧水厂运营管理平台建设，实现生产过程自动化、水质监测实时化、设备管理智能化，日供水能力达50万吨</p>
+          <div class="case-meta">
+            <span class="case-meta-item">浙江杭州</span>
+            <span class="case-meta-item">2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll animate-delay-1" data-category="rural">
+        <div class="case-detail-img">
+          <img src="images/projects/nanjing-rural.jpg" alt="南京浦口农污" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">南京浦口农污</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-cyan">智慧农污</span>
+          <h3>南京浦口农村污水治理项目</h3>
+          <p>农村污水处理设施智慧运维管理，覆盖浦口区200余个自然村，实现设施远程监控、智能巡检、运维工单管理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">江苏南京</span>
+            <span class="case-meta-item">2021</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll animate-delay-2" data-category="sponge">
+        <div class="case-detail-img">
+          <img src="images/projects/xian-sponge.jpg" alt="西安小寨" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">西安小寨</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-blue">海绵城市</span>
+          <h3>西安小寨海绵城市项目</h3>
+          <p>海绵城市智慧监测与管控平台，实现雨水收集、渗透、调蓄、回用全流程监测，助力城市内涝治理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">陕西西安</span>
+            <span class="case-meta-item">2021</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll" data-category="pipe">
+        <div class="case-detail-img">
+          <img src="images/projects/nanjing-pipe.jpg" alt="南京南部新城管廊" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">南京南部新城管廊</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-blue">智慧管廊</span>
+          <h3>南京南部新城综合管廊</h3>
+          <p>综合管廊智慧运维管理系统，实现管廊环境监测、安防管控、设备运维、应急指挥一体化管理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">江苏南京</span>
+            <span class="case-meta-item">2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll animate-delay-1" data-category="city">
+        <div class="case-detail-img">
+          <img src="images/projects/beijing-tongzhou.jpg" alt="北京通州副中心" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">北京通州副中心</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-gold">智慧城市</span>
+          <h3>北京通州城市副中心智慧化</h3>
+          <p>城市副中心智慧基础设施建设项目，涵盖智慧水务、智慧交通、智慧园区等多领域综合解决方案</p>
+          <div class="case-meta">
+            <span class="case-meta-item">北京通州</span>
+            <span class="case-meta-item">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll animate-delay-2" data-category="water">
+        <div class="case-detail-img">
+          <img src="images/projects/xian-chanba.jpg" alt="西安浐灞" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">西安浐灞</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-cyan">智慧水务</span>
+          <h3>西安浐灞智慧水务项目</h3>
+          <p>流域综合治理智慧运营平台，实现河道监测、水质管控、生态修复一体化管理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">陕西西安</span>
+            <span class="case-meta-item">2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll" data-category="rural">
+        <div class="case-detail-img">
+          <img src="images/projects/nanjing-rural.jpg" alt="溧阳农污" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">溧阳农污</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-cyan">智慧农污</span>
+          <h3>江苏溧阳市农污治理项目</h3>
+          <p>全域农村污水治理智慧运营标杆项目，采用"互联网+运维"模式，实现农污设施全覆盖智能化管理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">江苏溧阳</span>
+            <span class="case-meta-item">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-detail-card filter-item animate-on-scroll animate-delay-1" data-category="sponge">
+        <div class="case-detail-img">
+          <img src="images/projects/xian-sponge.jpg" alt="海绵城市项目" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:none">海绵城市项目</div>
+        </div>
+        <div class="case-detail-content">
+          <span class="tag tag-blue">海绵城市</span>
+          <h3>某新区海绵城市建设项目</h3>
+          <p>新建区海绵城市智慧化建设，包括雨水花园、透水铺装、调蓄池等海绵设施的智能化监测与管理</p>
+          <div class="case-meta">
+            <span class="case-meta-item">华东地区</span>
+            <span class="case-meta-item">2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="section cases-stats-section">
+    <div class="section-header animate-on-scroll">
+      <h2>项目数据</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cases-stats-grid">
+      <div class="animate-on-scroll">
+        <div class="cases-stat-number" data-count="70" data-suffix="+" data-prefix="">0</div>
+        <div class="cases-stat-label">运营项目</div>
+      </div>
+      <div class="animate-on-scroll animate-delay-1">
+        <div class="cases-stat-number" data-count="15" data-suffix="+" data-prefix="">0</div>
+        <div class="cases-stat-label">覆盖省市</div>
+      </div>
+      <div class="animate-on-scroll animate-delay-2">
+        <div class="cases-stat-number" data-count="100" data-suffix="万+" data-prefix="">0</div>
+        <div class="cases-stat-label">服务人口</div>
+      </div>
+      <div class="animate-on-scroll animate-delay-3">
+        <div class="cases-stat-number" data-count="50" data-suffix="+" data-prefix="">0</div>
+        <div class="cases-stat-label">专利技术</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background: linear-gradient(180deg, #020B16, #0A1929); text-align: center;">
+    <div class="animate-on-scroll" style="max-width: 600px; margin: 0 auto;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--color-light), var(--color-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">想了解更多项目详情？</h2>
+      <p style="color: var(--color-gray); margin-bottom: 2rem;">欢迎联系我们的业务团队获取详细资料</p>
+      <a href="contact.html" class="btn btn-primary">联系我们</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">中建智能</div>
+        <div class="logo-sub">CSCEC INTELLIGENT</div>
+        <p>中建集团旗下首家智慧运营公司，专注于城市基础设施智慧化运营服务，致力于成为最具竞争力的智慧运营解决方案提供商。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="business.html">业务领域</a></li>
+          <li><a href="solutions.html">解决方案</a></li>
+          <li><a href="cases.html">典型案例</a></li>
+          <li><a href="news.html">新闻中心</a></li>
+          <li><a href="contact.html">联系我们</a></li>
+          <li><a href="party.html">党建专栏</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>联系方式</h4>
+        <p>中国北京市朝阳区</p>
+        <p><span class="contact-icon">&#9990;</span> 请通过表单联系我们</p>
+        <p><span class="contact-icon">&#9993;</span> contact@cscecint.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 中建智能技术有限公司 版权所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var filterBar = document.querySelector('.filter-bar');
+      var casesContainer = document.getElementById('cases-container');
+      if (filterBar && casesContainer && typeof initFilter === 'function') {
+        initFilter(filterBar, casesContainer);
+      }
+    });
+  </script>
+</body>
+</html>

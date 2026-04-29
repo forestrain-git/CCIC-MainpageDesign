@@ -1,0 +1,282 @@
+/* ============================================
+   党建专栏样式
+   ============================================ */
+
+.party-hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1A0508 0%, #2A080E 30%, #3D0C15 60%, #2A080E 100%);
+  overflow: hidden;
+}
+
+.party-hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.party-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(200, 164, 92, 0.08) 0%, transparent 60%);
+  z-index: 2;
+}
+
+.party-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 5%;
+}
+
+/* Party emblem SVG style */
+.party-emblem {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(200, 164, 92, 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.party-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 0.8rem;
+  letter-spacing: 3px;
+}
+
+.party-hero p {
+  color: rgba(232, 237, 242, 0.8);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+/* Organization Section */
+.org-section {
+  background: linear-gradient(180deg, #020B16 0%, #0A1929 100%);
+}
+
+.org-chart {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.org-top {
+  background: linear-gradient(135deg, rgba(200, 164, 92, 0.2), rgba(200, 164, 92, 0.1));
+  border: 2px solid rgba(200, 164, 92, 0.4);
+  border-radius: var(--radius);
+  padding: 1.5rem 3rem;
+  text-align: center;
+  color: var(--color-gold);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.org-connector {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--color-gold), var(--color-gray));
+}
+
+.org-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.org-node {
+  background: linear-gradient(145deg, rgba(10, 25, 41, 0.9), rgba(2, 11, 22, 0.95));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-light);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.org-node:hover {
+  border-color: rgba(200, 164, 92, 0.3);
+  transform: translateY(-3px);
+}
+
+.org-node.highlight {
+  border-color: rgba(200, 164, 92, 0.4);
+  background: linear-gradient(145deg, rgba(200, 164, 92, 0.1), rgba(10, 25, 41, 0.9));
+}
+
+/* Timeline */
+.party-timeline-section {
+  background: linear-gradient(180deg, #0A1929 0%, #020B16 100%);
+}
+
+.party-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.party-timeline-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(10, 25, 41, 0.8), rgba(2, 11, 22, 0.9));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.party-timeline-item:hover {
+  border-color: rgba(200, 164, 92, 0.3);
+  transform: translateX(5px);
+}
+
+.party-timeline-date {
+  color: var(--color-gold);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.party-timeline-content h4 {
+  color: var(--color-light);
+  margin-bottom: 0.5rem;
+}
+
+.party-timeline-content p {
+  color: var(--color-gray);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+/* Values */
+.values-section {
+  background: linear-gradient(180deg, #020B16 0%, #0A1929 100%);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.value-item {
+  background: linear-gradient(145deg, rgba(10, 25, 41, 0.8), rgba(2, 11, 22, 0.9));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.value-item:hover {
+  border-color: rgba(200, 164, 92, 0.3);
+  transform: translateY(-3px);
+}
+
+.value-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.value-text {
+  color: var(--color-light);
+  font-size: 0.95rem;
+}
+
+/* Spirit */
+.spirit-section {
+  background: linear-gradient(180deg, #0A1929 0%, #020B16 100%);
+  text-align: center;
+}
+
+.spirit-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.spirit-quote {
+  font-size: 1.3rem;
+  color: var(--color-gold);
+  line-height: 2;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.spirit-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.spirit-item {
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(10, 25, 41, 0.8), rgba(2, 11, 22, 0.9));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.spirit-item:hover {
+  border-color: rgba(200, 164, 92, 0.3);
+}
+
+.spirit-item h4 {
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.spirit-item p {
+  color: var(--color-gray);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .party-hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .org-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .party-timeline-item {
+    grid-template-columns: 120px 1fr;
+    align-items: start;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .spirit-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .spirit-quote {
+    font-size: 1.5rem;
+  }
+}

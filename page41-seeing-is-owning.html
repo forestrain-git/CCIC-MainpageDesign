@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PPT 第41页：看到即占有——GitHub 仓库即用</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 背景网格 */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(rgba(86,138,234,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(86,138,234,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    padding: 50px 70px;
+    position: relative;
+  }
+
+  /* 顶部标题区 */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #568aea, #50e3c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 4px;
+  }
+
+  .header .subtitle {
+    font-size: 20px;
+    color: #7a8bb5;
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  /* 三栏布局 */
+  .columns {
+    display: flex;
+    gap: 30px;
+    height: 820px;
+  }
+
+  .col {
+    flex: 1;
+    background: rgba(15, 19, 37, 0.9);
+    border: 1px solid rgba(86, 138, 234, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .col::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #568aea, #50e3c2);
+  }
+
+  .col-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #568aea;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .col-title .icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(86, 138, 234, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  /* 左栏：Excel 原始数据 */
+  .excel-preview {
+    background: #1a1f2e;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11px;
+    color: #8a9bba;
+    overflow: hidden;
+    height: 700px;
+    position: relative;
+  }
+
+  .excel-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(transparent, #1a1f2e);
+  }
+
+  .excel-row {
+    display: flex;
+    border-bottom: 1px solid rgba(86, 138, 234, 0.06);
+    padding: 2px 0;
+    white-space: nowrap;
+  }
+
+  .excel-row.header-row {
+    background: rgba(86, 138, 234, 0.1);
+    color: #568aea;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+  }
+
+  .excel-cell {
+    padding: 2px 6px;
+    min-width: 60px;
+    border-right: 1px solid rgba(86, 138, 234, 0.04);
+  }
+
+  .excel-cell.narrow { min-width: 45px; }
+  .excel-cell.wide { min-width: 100px; }
+  .excel-cell.num { text-align: right; color: #67e0e3; }
+  .excel-cell.highlight { background: rgba(255, 152, 0, 0.08); color: #ff9800; }
+
+  .excel-note {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 87, 34, 0.15);
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: #ff7043;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 1;
+  }
+
+  /* 中栏：Claude Code 过程 */
+  .process {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step {
+    background: rgba(15, 19, 37, 0.8);
+    border: 1px solid rgba(86, 138, 234, 0.12);
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .step-num {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: #568aea;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #50e3c2;
+    margin-bottom: 6px;
+  }
+
+  .step-content {
+    font-size: 12px;
+    color: #8a9bba;
+    line-height: 1.6;
+  }
+
+  .step-cmd {
+    background: #0d1117;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: 'Consolas', monospace;
+    font-size: 11px;
+    color: #7ee787;
+    margin-top: 6px;
+    border-left: 2px solid #568aea;
+  }
+
+  .step-time {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 11px;
+    color: #ff9800;
+    font-weight: 500;
+  }
+
+  /* 右栏：大屏结果 */
+  .result {
+    background: #0f1325;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 迷你大屏 */
+  .mini-screen {
+    transform: scale(0.52);
+    transform-origin: top left;
+    width: 193%;
+    height: 193%;
+  }
+
+  .ms-header {
+    text-align: center;
+    padding: 12px 0 8px;
+    background: linear-gradient(180deg, rgba(86, 138, 234, 0.08), transparent);
+  }
+
+  .ms-title {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #568aea, #50e3c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ms-subtitle {
+    font-size: 14px;
+    color: #568aea;
+    margin-top: 4px;
+  }
+
+  .ms-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    gap: 10px;
+    padding: 10px 16px;
+    height: calc(100% - 70px);
+  }
+
+  .ms-kpi-row {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .ms-kpi {
+    background: rgba(15, 19, 37, 0.9);
+    border: 1px solid rgba(86, 138, 234, 0.15);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .ms-kpi-label {
+    font-size: 12px;
+    color: #7a8bb5;
+    margin-bottom: 4px;
+  }
+
+  .ms-kpi-value {
+    font-size: 22px;
+    font-weight: 900;
+    font-family: 'DIN', 'Consolas', monospace;
+  }
+
+  .ms-kpi-value.blue { color: #568aea; }
+  .ms-kpi-value.green { color: #50e3c2; }
+  .ms-kpi-value.orange { color: #ff9800; }
+  .ms-kpi-value.red { color: #ff6b6b; }
+  .ms-kpi-value.cyan { color: #67e0e3; }
+  .ms-kpi-value.purple { color: #956FD4; }
+
+  .ms-panel {
+    background: rgba(15, 19, 37, 0.9);
+    border: 1px solid rgba(86, 138, 234, 0.12);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .ms-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #568aea;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ms-panel-title::before {
+    content: '';
+    width: 4px;
+    height: 14px;
+    background: #568aea;
+    border-radius: 2px;
+  }
+
+  /* 柱状图模拟 */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 140px;
+    padding-top: 10px;
+  }
+
+  .bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .bar-pair {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bar {
+    width: 12px;
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+  }
+
+  .bar.revenue { background: linear-gradient(180deg, #956FD4, #3EACE5); }
+  .bar.cost { background: linear-gradient(180deg, rgba(156,107,211,0.6), rgba(156,107,211,0.2)); }
+  .bar.profit { background: linear-gradient(180deg, #43dfa2, #28f8de); }
+
+  .bar-label {
+    font-size: 10px;
+    color: #7a8bb5;
+  }
+
+  /* 排行榜 */
+  .ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ranking-rank {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .ranking-rank.r1 { background: #ff6b6b; }
+  .ranking-rank.r2 { background: #ff9800; }
+  .ranking-rank.r3 { background: #568aea; }
+  .ranking-rank.r4 { background: rgba(86, 138, 234, 0.4); }
+
+  .ranking-name {
+    font-size: 12px;
+    color: #c3cbde;
+    flex: 1;
+  }
+
+  .ranking-bar-bg {
+    flex: 2;
+    height: 14px;
+    background: rgba(86, 138, 234, 0.08);
+    border-radius: 7px;
+    overflow: hidden;
+  }
+
+  .ranking-bar-fill {
+    height: 100%;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #568aea, #50e3c2);
+  }
+
+  .ranking-value {
+    font-size: 11px;
+    color: #67e0e3;
+    font-family: 'Consolas', monospace;
+    min-width: 50px;
+    text-align: right;
+  }
+
+  /* 环形图模拟 */
+  .ring-charts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+  }
+
+  .ring-item {
+    text-align: center;
+  }
+
+  .ring {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto 6px;
+  }
+
+  .ring::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: #0f1325;
+  }
+
+  .ring-value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    font-family: 'Consolas', monospace;
+    z-index: 1;
+  }
+
+  .ring-label {
+    font-size: 11px;
+    color: #7a8bb5;
+  }
+
+  /* 水位图 */
+  .water-box {
+    height: 40px;
+    background: rgba(86, 138, 234, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .water-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(86, 138, 234, 0.4), rgba(86, 138, 234, 0.15));
+    border-radius: 0 0 20px 20px;
+  }
+
+  .water-fill::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M0,4 Q25,0 50,4 T100,4 T150,4 T200,4 V8 H0 Z' fill='rgba(86,138,234,0.3)'%3E%3Canimate attributeName='d' dur='3s' repeatCount='indefinite' values='M0,4 Q25,0 50,4 T100,4 T150,4 T200,4 V8 H0 Z;M0,4 Q25,8 50,4 T100,4 T150,4 T200,4 V8 H0 Z;M0,4 Q25,0 50,4 T100,4 T150,4 T200,4 V8 H0 Z'/%3E%3C/path%3E%3C/svg%3E") repeat-x;
+    background-size: 200px 8px;
+    animation: wave 3s linear infinite;
+  }
+
+  @keyframes wave {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 200px; }
+  }
+
+  .water-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #568aea;
+    z-index: 1;
+  }
+
+  /* 底部标注 */
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    right: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 13px;
+    color: #5a6b8a;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: #3a4b6a;
+  }
+
+  /* 流程箭头 */
+  .arrow-down {
+    text-align: center;
+    color: #568aea;
+    font-size: 18px;
+    padding: 4px 0;
+  }
+
+  /* 胶囊图 */
+  .capsule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .capsule-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .capsule-name {
+    font-size: 12px;
+    color: #c3cbde;
+    min-width: 60px;
+  }
+
+  .capsule-bar {
+    flex: 1;
+    height: 16px;
+    background: rgba(86, 138, 234, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .capsule-fill {
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Consolas', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <!-- 标题 -->
+  <div class="header">
+    <h1>看到即占有 —— GitHub 仓库即用</h1>
+    <div class="subtitle">你不需要会编程，就能跑起来一个开源项目</div>
+  </div>
+
+  <div class="columns">
+    <!-- 左栏：Excel 原始数据 -->
+    <div class="col">
+      <div class="col-title">
+        <div class="icon">📊</div>
+        原始 Excel：191 列 × 146 个项目
+      </div>
+      <div class="excel-preview">
+        <div class="excel-row header-row">
+          <div class="excel-cell narrow">序号</div>
+          <div class="excel-cell wide">项目名称</div>
+          <div class="excel-cell">板块</div>
+          <div class="excel-cell num">含税收入</div>
+          <div class="excel-cell num">含税成本</div>
+          <div class="excel-cell num">收入</div>
+          <div class="excel-cell num">成本</div>
+          <div class="excel-cell num">毛利</div>
+          <div class="excel-cell num">毛利率</div>
+          <div class="excel-cell num">回款</div>
+          <div class="excel-cell num">付款</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">1</div>
+          <div class="excel-cell wide">浦口农污项目</div>
+          <div class="excel-cell">水务存量</div>
+          <div class="excel-cell num highlight">3,215.87</div>
+          <div class="excel-cell num">1,842.31</div>
+          <div class="excel-cell num highlight">2,845.53</div>
+          <div class="excel-cell num">1,630.28</div>
+          <div class="excel-cell num highlight">1,215.25</div>
+          <div class="excel-cell num">42.7%</div>
+          <div class="excel-cell num">3,102.44</div>
+          <div class="excel-cell num">1,650.20</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">2</div>
+          <div class="excel-cell wide">溧阳农污项目</div>
+          <div class="excel-cell">水务存量</div>
+          <div class="excel-cell num highlight">2,987.63</div>
+          <div class="excel-cell num">1,654.22</div>
+          <div class="excel-cell num highlight">2,642.81</div>
+          <div class="excel-cell num">1,463.74</div>
+          <div class="excel-cell num highlight">1,179.07</div>
+          <div class="excel-cell num">44.6%</div>
+          <div class="excel-cell num">2,845.19</div>
+          <div class="excel-cell num">1,402.33</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">3</div>
+          <div class="excel-cell wide">江阴农污项目</div>
+          <div class="excel-cell">水务存量</div>
+          <div class="excel-cell num highlight">2,654.18</div>
+          <div class="excel-cell num">1,587.93</div>
+          <div class="excel-cell num highlight">2,345.72</div>
+          <div class="excel-cell num">1,403.51</div>
+          <div class="excel-cell num highlight">942.21</div>
+          <div class="excel-cell num">40.2%</div>
+          <div class="excel-cell num">2,510.88</div>
+          <div class="excel-cell num">1,320.67</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">4</div>
+          <div class="excel-cell wide">如东农污项目</div>
+          <div class="excel-cell">水务存量</div>
+          <div class="excel-cell num highlight">2,108.44</div>
+          <div class="excel-cell num">1,245.67</div>
+          <div class="excel-cell num highlight">1,865.32</div>
+          <div class="excel-cell num">1,100.28</div>
+          <div class="excel-cell num highlight">765.04</div>
+          <div class="excel-cell num">41.0%</div>
+          <div class="excel-cell num">1,987.55</div>
+          <div class="excel-cell num">1,056.44</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">5</div>
+          <div class="excel-cell wide">如东水厂项目</div>
+          <div class="excel-cell">水务存量</div>
+          <div class="excel-cell num highlight">4,532.10</div>
+          <div class="excel-cell num">3,218.45</div>
+          <div class="excel-cell num highlight">4,012.88</div>
+          <div class="excel-cell num">2,845.67</div>
+          <div class="excel-cell num highlight">1,167.21</div>
+          <div class="excel-cell num">29.1%</div>
+          <div class="excel-cell num">4,287.33</div>
+          <div class="excel-cell num">2,980.12</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">6</div>
+          <div class="excel-cell wide">西安小寨海绵城市</div>
+          <div class="excel-cell">管廊存量</div>
+          <div class="excel-cell num highlight">3,876.55</div>
+          <div class="excel-cell num">2,654.32</div>
+          <div class="excel-cell num highlight">3,425.87</div>
+          <div class="excel-cell num">2,345.18</div>
+          <div class="excel-cell num highlight">1,080.69</div>
+          <div class="excel-cell num">31.5%</div>
+          <div class="excel-cell num">3,650.22</div>
+          <div class="excel-cell num">2,480.55</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">7</div>
+          <div class="excel-cell wide">长治海绵城市项目</div>
+          <div class="excel-cell">管廊存量</div>
+          <div class="excel-cell num highlight">2,445.33</div>
+          <div class="excel-cell num">1,876.22</div>
+          <div class="excel-cell num highlight">2,178.65</div>
+          <div class="excel-cell num">1,665.44</div>
+          <div class="excel-cell num highlight">513.21</div>
+          <div class="excel-cell num">23.6%</div>
+          <div class="excel-cell num">2,310.18</div>
+          <div class="excel-cell num">1,720.33</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">8</div>
+          <div class="excel-cell wide">衡水海绵城市项目</div>
+          <div class="excel-cell">管廊存量</div>
+          <div class="excel-cell num highlight">1,887.22</div>
+          <div class="excel-cell num">1,432.55</div>
+          <div class="excel-cell num highlight">1,665.88</div>
+          <div class="excel-cell num">1,265.33</div>
+          <div class="excel-cell num highlight">400.55</div>
+          <div class="excel-cell num">24.0%</div>
+          <div class="excel-cell num">1,780.44</div>
+          <div class="excel-cell num">1,340.22</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">9</div>
+          <div class="excel-cell wide">丹阳智慧镇污项目</div>
+          <div class="excel-cell">水务新增</div>
+          <div class="excel-cell num highlight">1,654.77</div>
+          <div class="excel-cell num">1,320.45</div>
+          <div class="excel-cell num highlight">1,462.88</div>
+          <div class="excel-cell num">1,167.22</div>
+          <div class="excel-cell num highlight">295.66</div>
+          <div class="excel-cell num">20.2%</div>
+          <div class="excel-cell num">1,520.33</div>
+          <div class="excel-cell num">1,245.18</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">10</div>
+          <div class="excel-cell wide">黄平智慧雨水管网</div>
+          <div class="excel-cell">其他</div>
+          <div class="excel-cell num highlight">523.44</div>
+          <div class="excel-cell num">487.22</div>
+          <div class="excel-cell num highlight">462.88</div>
+          <div class="excel-cell num">430.55</div>
+          <div class="excel-cell num highlight">32.33</div>
+          <div class="excel-cell num">7.0%</div>
+          <div class="excel-cell num">498.77</div>
+          <div class="excel-cell num">445.33</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-row">
+          <div class="excel-cell narrow">...</div>
+          <div class="excel-cell wide">...（共 146 个项目）</div>
+          <div class="excel-cell">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+          <div class="excel-cell num">...</div>
+        </div>
+        <div class="excel-note">191 列 × 153 行 · 手动整理需要 2-3 天</div>
+      </div>
+    </div>
+
+    <!-- 中栏：Claude Code 过程 -->
+    <div class="col" style="flex: 0.8;">
+      <div class="col-title">
+        <div class="icon">⚡</div>
+        Claude Code 自动执行
+      </div>
+      <div class="process">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">克隆仓库</div>
+          <div class="step-cmd">git clone https://github.com/L-noodle/vue-big-screen.git</div>
+          <div class="step-time">10 秒</div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">安装依赖</div>
+          <div class="step-cmd">npm install --legacy-peer-deps</div>
+          <div class="step-content">2,614 个包，4 分钟</div>
+          <div class="step-time">4 分钟</div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">读取 Excel · 提取数据</div>
+          <div class="step-cmd">openpyxl → financialData.js</div>
+          <div class="step-content">
+            从 191 列中识别关键指标<br>
+            按板块汇总 · 按年度分组<br>
+            计算毛利率、回款率
+          </div>
+          <div class="step-time">30 秒</div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">改写 12 个组件</div>
+          <div class="step-cmd">替换 mock data → 真实财务数据</div>
+          <div class="step-content">
+            center.vue · KPI 数字翻牌<br>
+            bottomLeftChart · 收入/成本/毛利柱状图<br>
+            bottomRightChart · 回款/付款趋势<br>
+            centreRight1 · 板块数据表<br>
+            ... 共 7 个视图 + 5 个图表组件
+          </div>
+          <div class="step-time">2 分钟</div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-title">构建 & 运行</div>
+          <div class="step-cmd">npx vue-cli-service build ✓</div>
+          <div class="step-content">编译通过，零错误</div>
+          <div class="step-time">总耗时 < 8 分钟</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右栏：大屏结果 -->
+    <div class="col">
+      <div class="col-title">
+        <div class="icon">🖥️</div>
+        财务数据可视化大屏（真实数据）
+      </div>
+      <div class="result">
+        <div class="mini-screen">
+          <div class="ms-header">
+            <div class="ms-title">财务数据可视化平台</div>
+            <div class="ms-subtitle">2018-2026 年开累数据 · 146 个项目 · 6 大板块</div>
+          </div>
+          <div class="ms-body">
+            <!-- KPI 行 -->
+            <div class="ms-kpi-row">
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">累计收入</div>
+                <div class="ms-kpi-value blue">123,342</div>
+              </div>
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">累计成本</div>
+                <div class="ms-kpi-value purple">86,453</div>
+              </div>
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">累计毛利</div>
+                <div class="ms-kpi-value green">36,889</div>
+              </div>
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">累计回款</div>
+                <div class="ms-kpi-value cyan">114,848</div>
+              </div>
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">累计付款</div>
+                <div class="ms-kpi-value orange">77,587</div>
+              </div>
+              <div class="ms-kpi">
+                <div class="ms-kpi-label">综合毛利率</div>
+                <div class="ms-kpi-value green">29.9%</div>
+              </div>
+            </div>
+
+            <!-- 左侧：板块排行 -->
+            <div class="ms-panel">
+              <div class="ms-panel-title">板块累计收入排行</div>
+              <div class="ranking-list">
+                <div class="ranking-item">
+                  <div class="ranking-rank r1">1</div>
+                  <div class="ranking-name">水务存量</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:100%"></div></div>
+                  <div class="ranking-value">19,081</div>
+                </div>
+                <div class="ranking-item">
+                  <div class="ranking-rank r2">2</div>
+                  <div class="ranking-name">管廊存量</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:46%"></div></div>
+                  <div class="ranking-value">8,788</div>
+                </div>
+                <div class="ranking-item">
+                  <div class="ranking-rank r3">3</div>
+                  <div class="ranking-name">水务新增</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:30%"></div></div>
+                  <div class="ranking-value">5,780</div>
+                </div>
+                <div class="ranking-item">
+                  <div class="ranking-rank r4">4</div>
+                  <div class="ranking-name">其他存量</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:25%"></div></div>
+                  <div class="ranking-value">4,772</div>
+                </div>
+                <div class="ranking-item">
+                  <div class="ranking-rank r4">5</div>
+                  <div class="ranking-name">25年新增</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:7%"></div></div>
+                  <div class="ranking-value">1,419</div>
+                </div>
+                <div class="ranking-item">
+                  <div class="ranking-rank r4">6</div>
+                  <div class="ranking-name">24年新增</div>
+                  <div class="ranking-bar-bg"><div class="ranking-bar-fill" style="width:7%"></div></div>
+                  <div class="ranking-value">1,257</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px;">
+                <div class="ms-panel-title" style="font-size:12px;">综合毛利率</div>
+                <div class="water-box">
+                  <div class="water-fill" style="height: 75%;"></div>
+                  <div class="water-text">29.9%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间：柱状图 -->
+            <div class="ms-panel">
+              <div class="ms-panel-title">年度收入 / 成本 / 毛利对比</div>
+              <div class="bar-chart">
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 24px;"></div>
+                    <div class="bar cost" style="height: 5px;"></div>
+                    <div class="bar profit" style="height: 19px;"></div>
+                  </div>
+                  <div class="bar-label">19</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 88px;"></div>
+                    <div class="bar cost" style="height: 43px;"></div>
+                    <div class="bar profit" style="height: 45px;"></div>
+                  </div>
+                  <div class="bar-label">20</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 100px;"></div>
+                    <div class="bar cost" style="height: 93px;"></div>
+                    <div class="bar profit" style="height: 8px;"></div>
+                  </div>
+                  <div class="bar-label">21</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 85px;"></div>
+                    <div class="bar cost" style="height: 76px;"></div>
+                    <div class="bar profit" style="height: 9px;"></div>
+                  </div>
+                  <div class="bar-label">22</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 98px;"></div>
+                    <div class="bar cost" style="height: 83px;"></div>
+                    <div class="bar profit" style="height: 15px;"></div>
+                  </div>
+                  <div class="bar-label">23</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 52px;"></div>
+                    <div class="bar cost" style="height: 55px;"></div>
+                    <div class="bar profit" style="height: 0px; background: #ff6b6b;"></div>
+                  </div>
+                  <div class="bar-label">24</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-pair">
+                    <div class="bar revenue" style="height: 26px;"></div>
+                    <div class="bar cost" style="height: 12px;"></div>
+                    <div class="bar profit" style="height: 13px;"></div>
+                  </div>
+                  <div class="bar-label">25</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:16px; justify-content:center; margin-top:10px; font-size:11px;">
+                <span style="color:#956FD4;">● 收入</span>
+                <span style="color:rgba(156,107,211,0.6);">● 成本</span>
+                <span style="color:#43dfa2;">● 毛利</span>
+                <span style="color:#F02FC2;">— 毛利率</span>
+              </div>
+            </div>
+
+            <!-- 右侧：毛利率对比 + 环形图 -->
+            <div class="ms-panel">
+              <div class="ms-panel-title">板块毛利率对比</div>
+              <div class="capsule-list">
+                <div class="capsule-item">
+                  <div class="capsule-name">25年新增</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:87%; background: linear-gradient(90deg, #ff6b6b, #ff9800);">69.8%</div>
+                  </div>
+                </div>
+                <div class="capsule-item">
+                  <div class="capsule-name">水务存量</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:44%; background: linear-gradient(90deg, #568aea, #50e3c2);">35.2%</div>
+                  </div>
+                </div>
+                <div class="capsule-item">
+                  <div class="capsule-name">24年新增</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:47%; background: linear-gradient(90deg, #956FD4, #67e0e3);">37.9%</div>
+                  </div>
+                </div>
+                <div class="capsule-item">
+                  <div class="capsule-name">管廊存量</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:34%; background: linear-gradient(90deg, #43dfa2, #28f8de);">27.4%</div>
+                  </div>
+                </div>
+                <div class="capsule-item">
+                  <div class="capsule-name">水务新增</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:25%; background: linear-gradient(90deg, #ff9800, #f5b44d);">20.3%</div>
+                  </div>
+                </div>
+                <div class="capsule-item">
+                  <div class="capsule-name">其他存量</div>
+                  <div class="capsule-bar">
+                    <div class="capsule-fill" style="width:15%; background: linear-gradient(90deg, #7a8bb5, #5a6b8a);">11.9%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div class="ms-panel-title" style="font-size:12px;">核心指标</div>
+                <div class="ring-charts">
+                  <div class="ring-item">
+                    <div class="ring" style="background: conic-gradient(#03a9f4 0% 93%, rgba(86,138,234,0.1) 93% 100%);">
+                      <div class="ring-value" style="color: #03a9f4;">93%</div>
+                    </div>
+                    <div class="ring-label">回款率</div>
+                  </div>
+                  <div class="ring-item">
+                    <div class="ring" style="background: conic-gradient(#ff9800 0% 63%, rgba(255,152,0,0.1) 63% 100%);">
+                      <div class="ring-value" style="color: #ff9800;">63%</div>
+                    </div>
+                    <div class="ring-label">付款率</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-left">
+      <span style="color: #568aea; font-weight: 700;">vue-big-screen</span>
+      <span style="margin-left: 8px;">GitHub 804 星 · Vue 2 + ECharts + DataV</span>
+      <span style="margin-left: 24px; color: #50e3c2; font-weight: 500;">8 分钟 · 零编程 · 从 Excel 到可视化大屏</span>
+    </div>
+    <div class="footer-right">AI 入门与能力边界拓展 · 中建发展总部培训</div>
+  </div>
+</div>
+</body>
+</html>
